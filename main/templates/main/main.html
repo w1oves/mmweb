@@ -1,0 +1,15 @@
+{% extends "base/base.html" %}
+{% block menu%}
+<li><a href='{% url "main:main" "config" %}' id=config>配置文件</a></li>
+<li><a href='{% url "main:main" "record" %}' id=record>记录文件</a></li>
+<li><a href='{% url "main:main" "gpu" %}' id=gpu>GPU状态</a></li>
+<li><a href='{% url "main:main" "tdb" %}' id=tdb>Tensorboards</a></li>
+<li><a href='https://docs.qq.com/' target='_blank'>腾讯文档</a></li>
+<li><a href='{% url "main:main" "process" %}' id=process>进程</a></li>
+
+{% endblock %}
+{% block debug_info %}
+{% if error %}
+{{error}}
+{% endif %}
+{% endblock %}

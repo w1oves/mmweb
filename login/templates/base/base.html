@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<title>server03</title>
+
+<head>
+
+    {% comment %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="100"> {% endcomment %}
+    <style>
+        header {
+            background-color: salmon;
+            color: white;
+            text-align: center;
+            padding: 5px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        nav {
+            background-color: #eeeeee;            
+        }
+
+        nav ul {
+            list-style-type: none;            
+            padding: 0;
+            overflow: hidden;
+            position: -webkit-sticky;
+            text-align: center;
+            width: fit-content;
+            margin: auto;
+            line-height: 80px;
+            /* Safari */
+            position: sticky;
+            top: 0;            
+        }
+
+        li {
+            float: left;
+            margin-left: 1em;
+        }
+
+        li a,
+        td a {
+            display: block;
+            background-color: salmon;
+            color: white;
+            padding-left: 2em;
+            padding-right: 2em;
+            border: 1px white solid;
+        }
+
+        li a:hover,
+        td a:hover {
+            background-color: brown;
+        }
+        section {
+            text-align: center;
+        }
+        footer {
+            background-color: salmon;
+            color: white;
+            clear: both;
+            text-align: center;
+            padding: 5px;
+        }
+
+
+        th,
+        td {
+            border: 1px solid black;
+            word-wrap: break-word;
+            font-size: small;
+        }
+
+        th.firstcol,
+        td.firstcol {
+            font-size: x-large;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/">
+        <header>
+            <h1>Deep Learning</h1>
+        </header>
+    </a>
+
+    <nav>
+        <ul>
+            {% block menu %}
+            {% endblock %}
+        </ul>
+    </nav>
+
+    <section>
+        {% block content %}
+        {% endblock %}
+        {% block debug_info %}
+        {% endblock %}
+    </section>
+
+    <footer>
+        Copyright WZX &nbsp | &nbsp {% if user_name %} User: {{user_name}} &nbsp| &nbsp {% endif %} {% now "jS F Y H:i" %}
+    </footer>
+</body>
+
+</html>

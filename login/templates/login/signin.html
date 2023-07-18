@@ -1,0 +1,47 @@
+{% extends "login/login.html" %}
+{% block menu %}
+<style>
+    #signin {
+        background-color: brown;
+    }
+    form {
+        width: fit-content;
+        text-align: left;
+        margin: auto;
+    }
+</style>
+{{block.super}}
+{% endblock %}
+{% block content %}
+<h1>点击对应用户登录</h1>
+<form method="post" action="">
+    {% csrf_token %}
+    <div style="text-align: left">
+        <table>
+            <tr>
+                <th class="firstcol">Name</th>
+                <th>interpreter</th>
+                <th>project_dir</th>
+                <th>code_base</th>
+            </tr>
+            {% if Users %}
+
+            <ul>
+                {% for User in Users %}
+                <tr>
+                    <td class="firstcol">
+                        <a href='{% url "signin" User.name %}'>
+                            {{User.name}}
+                        </a>
+                    </td>
+                    <td>{{User.interpreter_path}}</td>
+                    <td>{{User.project_dir}}</td>
+                    <td>{{User.code_base}}</td>
+                </tr>
+                {% endfor %}
+            </ul>
+        </table>
+        {% endif %}
+    </div>
+</form>
+{% endblock %}

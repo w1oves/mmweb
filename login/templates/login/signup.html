@@ -1,0 +1,23 @@
+{% extends "login/login.html" %}
+{% block menu %}
+<style>
+    #signup {
+        background-color: brown;
+    }
+
+    form {
+        width: fit-content;
+        text-align: left;
+        margin: auto;
+    }
+</style>
+{{block.super}}
+{% endblock %}
+{% block content %}
+<form action="{% url 'signup' %}" method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+
+{{message}}
+{% endblock %}

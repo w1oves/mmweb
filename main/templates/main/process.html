@@ -1,0 +1,10 @@
+{% extends "main/main.html" %} {% block menu %}
+<style>
+  #process {
+    background-color: brown;
+  }
+</style>
+{{block.super}} {% endblock %} 
+{% block content%}
+{% include "components/runner.html" %} 
+{% endblock %}

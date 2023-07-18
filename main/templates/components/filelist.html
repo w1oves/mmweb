@@ -1,0 +1,134 @@
+<head>
+    <style>
+        #filelist_div {
+            text-align: left;
+            width: 50%;
+            float: left;
+            margin-left: 2%;
+        }
+
+        #text {
+            float: left;
+            width: 45%;
+        }
+
+        #list input {
+            width: 2em;
+            height: 2em;
+        }
+
+        #list button {
+            width: 90%;
+            font-size: x-large;
+            text-align: left;
+            word-break: break-all;
+            padding: 5px;
+        }
+
+
+
+        button.default {
+            background-color: salmon;
+        }
+
+        button.dir {
+            background-color: aliceblue;
+        }
+
+        button.file {
+            background-color: white;
+        }
+
+        select {
+            float: left;
+            height: 70px;
+            width: max-content;
+            font-size: small;
+            color: salmon;
+            background-color: white;
+            margin-top: 10px;
+            margin-left: 2em;
+        }
+
+        #operate_select {
+            float: none;
+            font-size: large;
+            color: white;
+            font-weight: bold;
+            background-color: salmon;
+        }
+
+        #submit {
+            width: 100px;
+            height: 35px;
+            font-size: large;
+            font-weight: bold;
+            margin-left: 2em;
+            background-color: salmon;
+            font-weight: bold;
+            background-color: white;
+        }
+        p input {
+            height: 35px;
+            font-size: medium;
+            font-weight: bold;
+            margin-left: 2em;
+            background-color: salmon;
+            font-weight: bold;
+            background-color: white;
+
+        }
+    </style>
+</head>
+
+<form action="" method="post">
+    <div id=filelist_div>
+        {% csrf_token %}
+        <select id=gpu_select name="choice_gpus" multiple="multiple">
+            {% for gpu in gpus %}
+            <option value="{{gpu.num|safe}}">{{gpu.text|safe}}</option>
+            {% endfor %}
+        </select>
+        <select id=operate_select name="operate">
+            {% comment %} <option selected value="">
+                <text>选择操作</text>
+            </option> {% endcomment %}
+            {%for key,name in filelist_buttons.items%}
+            <option value="{{key}}">{{name}}</option>
+            {%endfor%}
+        </select>
+        <button id="submit" type="submit" name='submit_operate'>确定</button>
+        <br>
+        <div id="list">
+            </br>
+            {% for label,path in default_paths.items %}
+            <input type="checkbox" name="choice_multiple_paths" value="{{path}}" />
+            <button class="default" type="submit" name="choice_path" value="{{path}}">
+                {{label}}
+            </button>
+            <br />
+            {% endfor %}
+            {% for label,path in dirs.items %}
+            <input type="checkbox" name="choice_multiple_paths" value="{{path}}" />
+            <button class="dir" type="submit" name="choice_path" value="{{path}}">
+                {{label}}
+            </button>
+            <br />
+            {% endfor %}
+            {% for label,path in files.items %}
+            <input type="checkbox" name="choice_multiple_paths" value="{{path}}" />
+            <button class="file" type="submit" name="choice_path" value="{{path}}">
+                {{label}}
+            </button>
+            <br />
+            {% endfor %}
+        </div>
+    </div>
+    <div id="text">
+        {{editor_form.media}}
+        {{editor_form.as_p}}
+        <p> <input type="submit" name="text_save" value="text_save"> </ p>
+        <p> <input type="submit" name="close_text" value="close_text"> </ p>
+    </div>
+
+</form>

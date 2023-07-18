@@ -1,0 +1,21 @@
+{% extends "main/main.html" %}
+{% block menu %}
+<meta http-equiv="refresh" content="4">
+<style>
+    #gpu {
+        background-color: brown;
+    }
+
+    #gpu_window {
+        width: fit-content;
+        margin: auto;
+        text-align: left;
+    }
+</style>
+{{block.super}}
+{% endblock %}
+{%block content%}
+<div id=gpu_window>
+    {{gpu_info|safe}}
+</div>
+{%endblock%}

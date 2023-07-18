@@ -1,0 +1,12 @@
+{% extends "main/main.html" %}
+{% block menu %}
+<style>
+    #config {
+        background-color: brown;
+    }
+</style>
+{{block.super}}
+{% endblock %}
+{% block content %}
+{% include "components/filelist.html" %}
+{% endblock %}
